@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zychen.dao.CartMapper">
+
+    <select id="queryAllCart" resultType="Cart">
+        select *
+        from firstdemo.shoppingcartrecord;
+    </select>
+
+    <insert id="addCart" parameterType="Cart">
+        insert into firstdemo.shoppingcartrecord (bookName, price,bookQuanities,account)
+        values (#{bookName},#{price},#{bookQuanities},#{account});
+    </insert>
+
+    <delete id="deleteCartById" parameterType="int">
+        delete from firstdemo.shoppingcartrecord where id = #{id}
+    </delete>
+
+    <update id="updateCartById" parameterType="int">
+        update firstdemo.shoppingcartrecord
+        set bookQuanities = bookQuanities + 1
+        where id = #{id};
+    </update>
+
+    <delete id="clearCartByAccount">
+        delete from firstdemo.shoppingcartrecord where account = #{account}
+    </delete>
+
+    <update id="updateCartByBookName" >
+        update firstdemo.shoppingcartrecord
+        set bookQuanities = bookQuanities + 1
+        where bookName = #{bookName} and price = #{price} and account = #{account};
+    </update>
+
+    <update id="deleteCartById2" parameterType="int">
+        update firstdemo.shoppingcartrecord
+        set bookQuanities = bookQuanities - 1
+        where id = #{id};
+    </update>
+</mapper>

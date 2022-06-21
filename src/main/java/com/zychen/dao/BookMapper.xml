@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zychen.dao.BookMapper">
+
+    <insert id="addBook" parameterType="Book">
+        insert into firstdemo.book (bookName, author, price)
+        values (#{bookName},#{author},#{price});
+    </insert>
+
+    <delete id="deleteBookById" parameterType="int">
+        delete from firstdemo.book where id = #{id}
+    </delete>
+
+    <update id="updateBook" parameterType="Book">
+        update firstdemo.book
+        set bookName = #{bookName},price = #{price}
+        where id = #{id};
+    </update>
+
+    <select id="queryBookById" resultType="Book">
+        select *
+        from firstdemo.book
+        where id = #{id};
+    </select>
+
+    <select id="queryAllBook" resultType="Book">
+        select *
+        from firstdemo.book;
+    </select>
+
+    <select id="queryBook" resultType="Book">
+        select *
+        from firstdemo.book
+        where bookName like concat('%',#{bookName},'%');
+    </select>
+</mapper>

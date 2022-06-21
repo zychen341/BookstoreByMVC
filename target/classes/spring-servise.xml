@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.zychen.service"/>
+
+    <bean id="BookServiceImpl" class="com.zychen.service.BookServiceImpl">
+        <property name="bookMapper" ref="bookMapper"/>
+    </bean>
+
+    <bean id="AccountServiceImpl" class="com.zychen.service.AccountServiceImpl">
+        <property name="accountMapper" ref="accountMapper"/>
+    </bean>
+
+    <bean id="CartServiceImpl" class="com.zychen.service.CartServiceImpl">
+        <property name="cartMapper" ref="cartMapper"/>
+    </bean>
+
+    <bean id="PackageServiceImpl" class="com.zychen.service.PackageServiceImpl">
+        <property name="packageMapper" ref="packageMapper"/>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+</beans>
